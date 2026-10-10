@@ -1,0 +1,34 @@
+# Dependencies
+**/node_modules/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Build output
+**/dist/
+**/dist-ssr/
+**/build/
+
+# Logs and local tooling
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+.DS_Store
+.vscode/
+.idea/
+
+# Local database and generated database artifacts
+server/prisma/*.db
+server/prisma/*.db-journal
+server/prisma/*.db-shm
+server/prisma/*.db-wal
+
+# Uploaded files and runtime data
+server/uploads/
+server/src/uploads/files/
+
+# TypeScript/Vite temporary files
+**/*.tsbuildinfo
