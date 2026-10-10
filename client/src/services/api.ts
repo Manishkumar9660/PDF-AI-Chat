@@ -22,10 +22,18 @@ export async function uploadDocument(file: File): Promise<Document> {
   return parseResponse<Document>(await fetch(`${API_URL}/documents`, { method: 'POST', body }))
 }
 
-export async function askDocument(question: string, documentId: string, history: Message[], conversationId?: string): Promise<{ answer: string; conversationId: string }> {
-  return parseResponse<{ answer: string }>(await fetch(`${API_URL}/chat`, {
+
+export async function askDocument(
+  question: string,
+  documentId: string,
+  history: Message[],
+  conversationId?: string
+): Promise<{ answer: string; conversationId: string }> {
+  const response = await fetch(`${API_URL}/chat`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ question, documentId, history, conversationId }),
-  }))
+  })
+
+  return parseResponse<{ answer: string; conversationId: string }>(response)
 }
