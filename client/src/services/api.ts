@@ -1,6 +1,6 @@
 import type { ApiError, Document, Message } from '../types'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api'
+const API_BASE_URL = 'https://pdf-ai-chat-mb8g.onrender.com/api';
 
 async function parseResponse<T>(response: Response): Promise<T> {
   const data = await response.json() as T & ApiError
@@ -9,17 +9,17 @@ async function parseResponse<T>(response: Response): Promise<T> {
 }
 
 export async function getDocuments(): Promise<Document[]> {
-  return parseResponse<Document[]>(await fetch(`${API_URL}/documents`))
+  return parseResponse<Document[]>(await fetch(`${API_BASE_URL}/documents`))
 }
 
 export async function getDocumentHistory(documentId: string): Promise<{ conversationId: string | null; messages: Message[] }> {
-  return parseResponse<{ conversationId: string | null; messages: Message[] }>(await fetch(`${API_URL}/documents/${documentId}/history`))
+  return parseResponse<{ conversationId: string | null; messages: Message[] }>(await fetch(`${API_BASE_URL}/documents/${documentId}/history`))
 }
 
 export async function uploadDocument(file: File): Promise<Document> {
   const body = new FormData()
   body.append('file', file)
-  return parseResponse<Document>(await fetch(`${API_URL}/documents`, { method: 'POST', body }))
+  return parseResponse<Document>(await fetch(`${API_BASE_URL}/documents`, { method: 'POST', body }))
 }
 
 
@@ -29,7 +29,7 @@ export async function askDocument(
   history: Message[],
   conversationId?: string
 ): Promise<{ answer: string; conversationId: string }> {
-  const response = await fetch(`${API_URL}/chat`, {
+  const response = await fetch(`${API_BASE_URL}/chat`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ question, documentId, history, conversationId }),
