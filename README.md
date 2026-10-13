@@ -1,5 +1,5 @@
 # PDF AI Chat
-Link - https://pdf-ai-chat-g2ajgu164-mk5363339-9643s-projects.vercel.app/
+Link -(https://pdf-ai-chat-lovat.vercel.app/)
 A retrieval-augmented PDF chat application. Upload a PDF, index its text, search relevant chunks, and ask questions grounded in the document.
 
 ## Project structure
